@@ -48,6 +48,9 @@ STMicroelectronics:
 * [Nucleo-F401RE](https://mbed.org/platforms/ST-Nucleo-F401RE/) (Cortex-M4)
 * STM32F407 (Cortex-M4)
 
+Atmel
+* SAM4S Xplained (Cortex-M4 / ATSAM4S16C)
+
 Supported Toolchains and IDEs
 -----------------------------
 * GCC ARM: [GNU Tools for ARM Embedded Processors](https://launchpad.net/gcc-arm-embedded/4.7/4.7-2012-q4-major)

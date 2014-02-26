@@ -19,9 +19,9 @@ from exporters import Exporter
 
 class IAREmbeddedWorkbench(Exporter):
     NAME = 'IAR'
-    TARGETS = ['LPC1768', 'NUCLEO_F401RE']
+    TARGETS = ['LPC1768', 'NUCLEO_F401RE', 'SAM4S_XPLD']
     TOOLCHAIN = 'IAR'
-    
+
     def generate(self):
         ctx = {
             'name': self.program_name,
@@ -31,5 +31,6 @@ class IAREmbeddedWorkbench(Exporter):
             'libraries': self.resources.libraries,
             'symbols': self.toolchain.get_symbols()
         }
-        self.gen_file('iar.ewp.tmpl', ctx, '%s.ewp' % self.program_name)
-        self.gen_file('iar.eww.tmpl', ctx, '%s.eww' % self.program_name)
+        target = self.target.lower()
+        self.gen_file('iar_%s.ewp.tmpl' % target, ctx, '%s.ewp' % self.program_name)
+        self.gen_file('iar_%s.eww.tmpl' % target, ctx, '%s.eww' % self.program_name)
