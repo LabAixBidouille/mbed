@@ -1,4 +1,4 @@
-#include "sam4s.h"
+#include "atsam4s.h"
 
 /* Export segments from ld script */
 extern uint32_t __etext ;
@@ -138,7 +138,7 @@ void Reset_Handler( void )
 
 	if ( pSrc != pDest )
 	{
-		for ( ; pDest < &_erelocate ; )
+		for ( ; pDest < &__data_end__ ; )
 		{
 			*pDest++ = *pSrc++ ;
 		}

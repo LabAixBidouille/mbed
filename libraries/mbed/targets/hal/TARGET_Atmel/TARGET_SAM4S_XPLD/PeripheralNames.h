@@ -43,7 +43,7 @@ typedef enum {
 } DACName;
 
 typedef enum {
-    SPI_0 = (unsigned long)SPI0,
+    SPI_0 = (unsigned long)SPI,
 } SPIName;
 
 typedef enum {
