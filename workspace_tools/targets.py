@@ -462,6 +462,17 @@ class LPC1549(Target):
         
         self.supported_toolchains = ["uARM"]
 
+class SAM4S_XPLD(Target):
+    def __init__(self):
+        Target.__init__(self)
+        
+        self.core = "Cortex-M4"
+        
+        self.extra_labels = ['Atmel', 'ATSAM_COMMON', 'ATSAM4S']
+        
+        self.supported_toolchains = ["GCC_ARM", "IAR"]
+
+        
 # Get a single instance for each target
 TARGETS = [
     LPC2368(),
@@ -488,7 +499,8 @@ TARGETS = [
     LPC11U35_501(),
     NRF51822(),
     UBLOX_C027(),
-    LPC1549()
+    LPC1549(),
+	SAM4S_XPLD()
 ]
 
 # Map each target name to its unique instance
