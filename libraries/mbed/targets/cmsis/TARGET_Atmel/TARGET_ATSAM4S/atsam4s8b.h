@@ -1,5 +1,5 @@
-#ifndef _SAM4S8B_
-#define _SAM4S8B_
+#ifndef _427904B7_296B_47F1_83B2_E7F1DAEAF958_
+#define _427904B7_296B_47F1_83B2_E7F1DAEAF958_
 
 #ifdef __cplusplus
  extern "C" {
@@ -12,7 +12,8 @@
 /* ************************************************************************** */
 /*   CMSIS DEFINITIONS FOR SAM4S8B */
 /* ************************************************************************** */
-/**< Interrupt Number Definition */
+
+/* Interrupt Number Definition */
 typedef enum IRQn
 {
 /******  Cortex-M4 Processor Exceptions Numbers ******************************/
@@ -436,13 +437,9 @@ void WDT_Handler        ( void );
 #define CHIP_FREQ_FWS_4                 (100000000UL) /**< \brief Maximum operating frequency when FWS is 4 */
 #define CHIP_FREQ_FWS_5                 (123000000UL) /**< \brief Maximum operating frequency when FWS is 5 */
 
-/* HYSTeresis levels: please refer to Electrical Characteristics */
-#define ACC_ACR_HYST_50MV_MAX           (0x01UL)
-#define ACC_ACR_HYST_90MV_MAX           (0x11UL)
-
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _SAM4S8B_ */
+#endif /* _427904B7_296B_47F1_83B2_E7F1DAEAF958_ */
 

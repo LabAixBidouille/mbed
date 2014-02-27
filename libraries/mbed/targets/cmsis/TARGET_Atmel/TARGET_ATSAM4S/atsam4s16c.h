@@ -1,5 +1,5 @@
-#ifndef _SAM4S16C_
-#define _SAM4S16C_
+#ifndef _F222297E_7F68_4B72_8D4C_24054D281024_
+#define _F222297E_7F68_4B72_8D4C_24054D281024_
 
 #ifdef __cplusplus
  extern "C" {
@@ -327,13 +327,9 @@ void WDT_Handler        ( void );
 #define CHIP_FREQ_FWS_4                 (100000000UL) /**< \brief Maximum operating frequency when FWS is 4 */
 #define CHIP_FREQ_FWS_5                 (123000000UL) /**< \brief Maximum operating frequency when FWS is 5 */
 
-/* HYSTeresis levels: please refer to Electrical Characteristics */
-#define ACC_ACR_HYST_50MV_MAX	          (0x01UL)
-#define ACC_ACR_HYST_90MV_MAX           (0x11UL)
-
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _SAM4S16C_ */
+#endif /* _F222297E_7F68_4B72_8D4C_24054D281024_ */
 

@@ -1,34 +1,5 @@
-/* ---------------------------------------------------------------------------- */
-/*                  Atmel Microcontroller Software Support                      */
-/*                       SAM Software Package License                           */
-/* ---------------------------------------------------------------------------- */
-/* Copyright (c) 2013, Atmel Corporation                                        */
-/*                                                                              */
-/* All rights reserved.                                                         */
-/*                                                                              */
-/* Redistribution and use in source and binary forms, with or without           */
-/* modification, are permitted provided that the following condition is met:    */
-/*                                                                              */
-/* - Redistributions of source code must retain the above copyright notice,     */
-/* this list of conditions and the disclaimer below.                            */
-/*                                                                              */
-/* Atmel's name may not be used to endorse or promote products derived from     */
-/* this software without specific prior written permission.                     */
-/*                                                                              */
-/* DISCLAIMER:  THIS SOFTWARE IS PROVIDED BY ATMEL "AS IS" AND ANY EXPRESS OR   */
-/* IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF */
-/* MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE   */
-/* DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR ANY DIRECT, INDIRECT,      */
-/* INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT */
-/* LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,  */
-/* OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF    */
-/* LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING         */
-/* NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, */
-/* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.                           */
-/* ---------------------------------------------------------------------------- */
-
-#ifndef _SAM4SA16C_
-#define _SAM4SA16C_
+#ifndef _11F9287C_4452_4C5B_945A_DAD1D45CAD38_
+#define _11F9287C_4452_4C5B_945A_DAD1D45CAD38_
 
 #ifdef __cplusplus
  extern "C" {
@@ -215,72 +186,6 @@ void WDT_Handler        ( void );
 #include "system_atsam4s.h"
 #endif /* DONT_USE_CMSIS_INIT */
 
-/* ************************************************************************** */
-/**  SOFTWARE PERIPHERAL API DEFINITION FOR SAM4SA16C */
-/* ************************************************************************** */
-#include "component/component_acc.h"
-#include "component/component_adc.h"
-#include "component/component_chipid.h"
-#include "component/component_cmcc.h"
-#include "component/component_crccu.h"
-#include "component/component_dacc.h"
-#include "component/component_efc.h"
-#include "component/component_gpbr.h"
-#include "component/component_hsmci.h"
-#include "component/component_matrix.h"
-#include "component/component_pdc.h"
-#include "component/component_pio.h"
-#include "component/component_pmc.h"
-#include "component/component_pwm.h"
-#include "component/component_rstc.h"
-#include "component/component_rtc.h"
-#include "component/component_rtt.h"
-#include "component/component_smc.h"
-#include "component/component_spi.h"
-#include "component/component_ssc.h"
-#include "component/component_supc.h"
-#include "component/component_tc.h"
-#include "component/component_twi.h"
-#include "component/component_uart.h"
-#include "component/component_udp.h"
-#include "component/component_usart.h"
-#include "component/component_wdt.h"
-
-/* ************************************************************************** */
-/*   REGISTER ACCESS DEFINITIONS FOR SAM4SA16C */
-/* ************************************************************************** */
-#include "instance/instance_hsmci.h"
-#include "instance/instance_ssc.h"
-#include "instance/instance_spi.h"
-#include "instance/instance_tc0.h"
-#include "instance/instance_tc1.h"
-#include "instance/instance_twi0.h"
-#include "instance/instance_twi1.h"
-#include "instance/instance_pwm.h"
-#include "instance/instance_usart0.h"
-#include "instance/instance_usart1.h"
-#include "instance/instance_udp.h"
-#include "instance/instance_adc.h"
-#include "instance/instance_dacc.h"
-#include "instance/instance_acc.h"
-#include "instance/instance_crccu.h"
-#include "instance/instance_cmcc.h"
-#include "instance/instance_smc.h"
-#include "instance/instance_matrix.h"
-#include "instance/instance_pmc.h"
-#include "instance/instance_uart0.h"
-#include "instance/instance_chipid.h"
-#include "instance/instance_uart1.h"
-#include "instance/instance_efc0.h"
-#include "instance/instance_pioa.h"
-#include "instance/instance_piob.h"
-#include "instance/instance_pioc.h"
-#include "instance/instance_rstc.h"
-#include "instance/instance_supc.h"
-#include "instance/instance_rtt.h"
-#include "instance/instance_wdt.h"
-#include "instance/instance_rtc.h"
-#include "instance/instance_gpbr.h"
 
 /* ************************************************************************** */
 /*   PERIPHERAL ID DEFINITIONS FOR SAM4SA16C */
@@ -323,7 +228,6 @@ void WDT_Handler        ( void );
 /* ************************************************************************** */
 /*   BASE ADDRESS DEFINITIONS FOR SAM4SA16C */
 /* ************************************************************************** */
-#if (defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__))
 #define HSMCI      (0x40000000U) /**< \brief (HSMCI     ) Base Address */
 #define PDC_HSMCI  (0x40000100U) /**< \brief (PDC_HSMCI ) Base Address */
 #define SSC        (0x40004000U) /**< \brief (SSC       ) Base Address */
@@ -369,58 +273,7 @@ void WDT_Handler        ( void );
 #define WDT        (0x400E1450U) /**< \brief (WDT       ) Base Address */
 #define RTC        (0x400E1460U) /**< \brief (RTC       ) Base Address */
 #define GPBR       (0x400E1490U) /**< \brief (GPBR      ) Base Address */
-#else
-#define HSMCI      ((Hsmci  *)0x40000000U) /**< \brief (HSMCI     ) Base Address */
-#define PDC_HSMCI  ((Pdc    *)0x40000100U) /**< \brief (PDC_HSMCI ) Base Address */
-#define SSC        ((Ssc    *)0x40004000U) /**< \brief (SSC       ) Base Address */
-#define PDC_SSC    ((Pdc    *)0x40004100U) /**< \brief (PDC_SSC   ) Base Address */
-#define SPI        ((Spi    *)0x40008000U) /**< \brief (SPI       ) Base Address */
-#define PDC_SPI    ((Pdc    *)0x40008100U) /**< \brief (PDC_SPI   ) Base Address */
-#define TC0        ((Tc     *)0x40010000U) /**< \brief (TC0       ) Base Address */
-#define TC1        ((Tc     *)0x40014000U) /**< \brief (TC1       ) Base Address */
-#define TWI0       ((Twi    *)0x40018000U) /**< \brief (TWI0      ) Base Address */
-#define PDC_TWI0   ((Pdc    *)0x40018100U) /**< \brief (PDC_TWI0  ) Base Address */
-#define TWI1       ((Twi    *)0x4001C000U) /**< \brief (TWI1      ) Base Address */
-#define PDC_TWI1   ((Pdc    *)0x4001C100U) /**< \brief (PDC_TWI1  ) Base Address */
-#define PWM        ((Pwm    *)0x40020000U) /**< \brief (PWM       ) Base Address */
-#define PDC_PWM    ((Pdc    *)0x40020100U) /**< \brief (PDC_PWM   ) Base Address */
-#define USART0     ((Usart  *)0x40024000U) /**< \brief (USART0    ) Base Address */
-#define PDC_USART0 ((Pdc    *)0x40024100U) /**< \brief (PDC_USART0) Base Address */
-#define USART1     ((Usart  *)0x40028000U) /**< \brief (USART1    ) Base Address */
-#define PDC_USART1 ((Pdc    *)0x40028100U) /**< \brief (PDC_USART1) Base Address */
-#define UDP        ((Udp    *)0x40034000U) /**< \brief (UDP       ) Base Address */
-#define ADC        ((Adc    *)0x40038000U) /**< \brief (ADC       ) Base Address */
-#define PDC_ADC    ((Pdc    *)0x40038100U) /**< \brief (PDC_ADC   ) Base Address */
-#define DACC       ((Dacc   *)0x4003C000U) /**< \brief (DACC      ) Base Address */
-#define PDC_DACC   ((Pdc    *)0x4003C100U) /**< \brief (PDC_DACC  ) Base Address */
-#define ACC        ((Acc    *)0x40040000U) /**< \brief (ACC       ) Base Address */
-#define CRCCU      ((Crccu  *)0x40044000U) /**< \brief (CRCCU     ) Base Address */
-#define CMCC       ((Cmcc   *)0x4007C000U) /**< \brief (CMCC      ) Base Address */
-#define SMC        ((Smc    *)0x400E0000U) /**< \brief (SMC       ) Base Address */
-#define MATRIX     ((Matrix *)0x400E0200U) /**< \brief (MATRIX    ) Base Address */
-#define PMC        ((Pmc    *)0x400E0400U) /**< \brief (PMC       ) Base Address */
-#define UART0      ((Uart   *)0x400E0600U) /**< \brief (UART0     ) Base Address */
-#define PDC_UART0  ((Pdc    *)0x400E0700U) /**< \brief (PDC_UART0 ) Base Address */
-#define CHIPID     ((Chipid *)0x400E0740U) /**< \brief (CHIPID    ) Base Address */
-#define UART1      ((Uart   *)0x400E0800U) /**< \brief (UART1     ) Base Address */
-#define PDC_UART1  ((Pdc    *)0x400E0900U) /**< \brief (PDC_UART1 ) Base Address */
-#define EFC0       ((Efc    *)0x400E0A00U) /**< \brief (EFC0      ) Base Address */
-#define PIOA       ((Pio    *)0x400E0E00U) /**< \brief (PIOA      ) Base Address */
-#define PDC_PIOA   ((Pdc    *)0x400E0F68U) /**< \brief (PDC_PIOA  ) Base Address */
-#define PIOB       ((Pio    *)0x400E1000U) /**< \brief (PIOB      ) Base Address */
-#define PIOC       ((Pio    *)0x400E1200U) /**< \brief (PIOC      ) Base Address */
-#define RSTC       ((Rstc   *)0x400E1400U) /**< \brief (RSTC      ) Base Address */
-#define SUPC       ((Supc   *)0x400E1410U) /**< \brief (SUPC      ) Base Address */
-#define RTT        ((Rtt    *)0x400E1430U) /**< \brief (RTT       ) Base Address */
-#define WDT        ((Wdt    *)0x400E1450U) /**< \brief (WDT       ) Base Address */
-#define RTC        ((Rtc    *)0x400E1460U) /**< \brief (RTC       ) Base Address */
-#define GPBR       ((Gpbr   *)0x400E1490U) /**< \brief (GPBR      ) Base Address */
-#endif /* (defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__)) */
 
-/* ************************************************************************** */
-/*   PIO DEFINITIONS FOR SAM4SA16C */
-/* ************************************************************************** */
-#include "pio/pio_sam4sa16c.h"
 
 /* ************************************************************************** */
 /*   MEMORY MAPPING DEFINITIONS FOR SAM4SA16C                                 */
@@ -478,12 +331,9 @@ void WDT_Handler        ( void );
 #define CHIP_FREQ_FWS_4                 (100000000UL) /**< \brief Maximum operating frequency when FWS is 4 */
 #define CHIP_FREQ_FWS_5                 (123000000UL) /**< \brief Maximum operating frequency when FWS is 5 */
 
-/* HYSTeresis levels: please refer to Electrical Characteristics */
-#define ACC_ACR_HYST_50MV_MAX           (0x01UL)
-#define ACC_ACR_HYST_90MV_MAX           (0x11UL)
-
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _SAM4SA16C_ */
+#endif /* _11F9287C_4452_4C5B_945A_DAD1D45CAD38_ */
+
