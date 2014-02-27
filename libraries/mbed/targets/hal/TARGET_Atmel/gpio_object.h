@@ -16,15 +16,21 @@ typedef struct {
     __O  uint32_t *reg_out;
 } gpio_t;
 
-static inline void gpio_write(gpio_t *obj, int value) {
+static inline void gpio_write( gpio_t *obj, int value )
+{
     if (value)
+	{
         *obj->reg_set = obj->mask;
+	}
     else
+	{
         *obj->reg_clr = obj->mask;
+	}
 }
 
-static inline int gpio_read(gpio_t *obj) {
-    return ((*obj->reg_in & obj->mask) ? 1 : 0);
+static inline int gpio_read( gpio_t *obj )
+{
+    return ((*obj->reg_in & obj->mask) ? 1 : 0) ;
 }
 
 #ifdef __cplusplus
