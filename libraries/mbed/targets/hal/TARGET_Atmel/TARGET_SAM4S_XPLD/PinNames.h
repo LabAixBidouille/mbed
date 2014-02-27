@@ -1,7 +1,7 @@
 #ifndef _EC8586E2_C40F_4A8E_BBD0_5304418D4684_
 #define _EC8586E2_C40F_4A8E_BBD0_5304418D4684_
 
-#include <stdint.h>
+#include "atsam4s.h"
 
 typedef enum {
     PIN_INPUT,
