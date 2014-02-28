@@ -10,12 +10,9 @@
 #endif
 
 /* ************************************************************************** */
-/*   CMSIS DEFINITIONS FOR SAM4SD32B */
+/*   CMSIS DEFINITIONS FOR SAM4SD32B                                          */
 /* ************************************************************************** */
-/** \addtogroup SAM4SD32B_cmsis CMSIS Definitions */
-/*@{*/
-
-/**< Interrupt Number Definition */
+/* Interrupt Number Definition */
 typedef enum IRQn
 {
 /******  Cortex-M4 Processor Exceptions Numbers ******************************/
@@ -29,7 +26,6 @@ typedef enum IRQn
   PendSV_IRQn           = -2,  /**< 14 Cortex-M4 Pend SV Interrupt           */
   SysTick_IRQn          = -1,  /**< 15 Cortex-M4 System Tick Interrupt       */
 /******  SAM4SD32B specific Interrupt Numbers *********************************/
-
   SUPC_IRQn            =  0, /**<  0 SAM4SD32B Supply Controller (SUPC) */
   RSTC_IRQn            =  1, /**<  1 SAM4SD32B Reset Controller (RSTC) */
   RTC_IRQn             =  2, /**<  2 SAM4SD32B Real Time Clock (RTC) */
@@ -170,31 +166,22 @@ void USART0_Handler     ( void );
 void USART1_Handler     ( void );
 void WDT_Handler        ( void );
 
-/**
- * \brief Configuration of the Cortex-M4 Processor and Core Peripherals
- */
-
+/* Configuration of the Cortex-M4 Processor and Core Peripherals */
 #define __CM4_REV              0x0001 /**< SAM4SD32B core revision number ([15:8] revision number, [7:0] patch number) */
 #define __MPU_PRESENT          1      /**< SAM4SD32B does provide a MPU */
 #define __FPU_PRESENT          0      /**< SAM4SD32B does not provide a FPU */
 #define __NVIC_PRIO_BITS       4      /**< SAM4SD32B uses 4 Bits for the Priority Levels */
 #define __Vendor_SysTickConfig 0      /**< Set to 1 if different SysTick Config is used */
 
-/*
- * \brief CMSIS includes
- */
-
+/* CMSIS includes */
 #include <core_cm4.h>
 #if !defined DONT_USE_CMSIS_INIT
 #include "system_atsam4s.h"
 #endif /* DONT_USE_CMSIS_INIT */
 
-
-
 /* ************************************************************************** */
-/*   PERIPHERAL ID DEFINITIONS FOR SAM4SD32B */
+/*   PERIPHERAL ID DEFINITIONS FOR SAM4SD32B                                  */
 /* ************************************************************************** */
-
 #define ID_SUPC   ( 0) /**< \brief Supply Controller (SUPC) */
 #define ID_RSTC   ( 1) /**< \brief Reset Controller (RSTC) */
 #define ID_RTC    ( 2) /**< \brief Real Time Clock (RTC) */
@@ -229,55 +216,57 @@ void WDT_Handler        ( void );
 
 #define ID_PERIPH_COUNT (35) /**< \brief Number of peripheral IDs */
 
-#define HSMCI      ((Hsmci  *)0x40000000U) /**< \brief (HSMCI     ) Base Address */
-#define PDC_HSMCI  ((Pdc    *)0x40000100U) /**< \brief (PDC_HSMCI ) Base Address */
-#define SSC        ((Ssc    *)0x40004000U) /**< \brief (SSC       ) Base Address */
-#define PDC_SSC    ((Pdc    *)0x40004100U) /**< \brief (PDC_SSC   ) Base Address */
-#define SPI        ((Spi    *)0x40008000U) /**< \brief (SPI       ) Base Address */
-#define PDC_SPI    ((Pdc    *)0x40008100U) /**< \brief (PDC_SPI   ) Base Address */
-#define TC0        ((Tc     *)0x40010000U) /**< \brief (TC0       ) Base Address */
-#define TC1        ((Tc     *)0x40014000U) /**< \brief (TC1       ) Base Address */
-#define TWI0       ((Twi    *)0x40018000U) /**< \brief (TWI0      ) Base Address */
-#define PDC_TWI0   ((Pdc    *)0x40018100U) /**< \brief (PDC_TWI0  ) Base Address */
-#define TWI1       ((Twi    *)0x4001C000U) /**< \brief (TWI1      ) Base Address */
-#define PDC_TWI1   ((Pdc    *)0x4001C100U) /**< \brief (PDC_TWI1  ) Base Address */
-#define PWM        ((Pwm    *)0x40020000U) /**< \brief (PWM       ) Base Address */
-#define PDC_PWM    ((Pdc    *)0x40020100U) /**< \brief (PDC_PWM   ) Base Address */
-#define USART0     ((Usart  *)0x40024000U) /**< \brief (USART0    ) Base Address */
-#define PDC_USART0 ((Pdc    *)0x40024100U) /**< \brief (PDC_USART0) Base Address */
-#define USART1     ((Usart  *)0x40028000U) /**< \brief (USART1    ) Base Address */
-#define PDC_USART1 ((Pdc    *)0x40028100U) /**< \brief (PDC_USART1) Base Address */
-#define UDP        ((Udp    *)0x40034000U) /**< \brief (UDP       ) Base Address */
-#define ADC        ((Adc    *)0x40038000U) /**< \brief (ADC       ) Base Address */
-#define PDC_ADC    ((Pdc    *)0x40038100U) /**< \brief (PDC_ADC   ) Base Address */
-#define DACC       ((Dacc   *)0x4003C000U) /**< \brief (DACC      ) Base Address */
-#define PDC_DACC   ((Pdc    *)0x4003C100U) /**< \brief (PDC_DACC  ) Base Address */
-#define ACC        ((Acc    *)0x40040000U) /**< \brief (ACC       ) Base Address */
-#define CRCCU      ((Crccu  *)0x40044000U) /**< \brief (CRCCU     ) Base Address */
-#define CMCC       ((Cmcc   *)0x4007C000U) /**< \brief (CMCC      ) Base Address */
-#define MATRIX     ((Matrix *)0x400E0200U) /**< \brief (MATRIX    ) Base Address */
-#define PMC        ((Pmc    *)0x400E0400U) /**< \brief (PMC       ) Base Address */
-#define UART0      ((Uart   *)0x400E0600U) /**< \brief (UART0     ) Base Address */
-#define PDC_UART0  ((Pdc    *)0x400E0700U) /**< \brief (PDC_UART0 ) Base Address */
-#define CHIPID     ((Chipid *)0x400E0740U) /**< \brief (CHIPID    ) Base Address */
-#define UART1      ((Uart   *)0x400E0800U) /**< \brief (UART1     ) Base Address */
-#define PDC_UART1  ((Pdc    *)0x400E0900U) /**< \brief (PDC_UART1 ) Base Address */
-#define EFC0       ((Efc    *)0x400E0A00U) /**< \brief (EFC0      ) Base Address */
-#define EFC1       ((Efc    *)0x400E0C00U) /**< \brief (EFC1      ) Base Address */
-#define PIOA       ((Pio    *)0x400E0E00U) /**< \brief (PIOA      ) Base Address */
-#define PDC_PIOA   ((Pdc    *)0x400E0F68U) /**< \brief (PDC_PIOA  ) Base Address */
-#define PIOB       ((Pio    *)0x400E1000U) /**< \brief (PIOB      ) Base Address */
-#define RSTC       ((Rstc   *)0x400E1400U) /**< \brief (RSTC      ) Base Address */
-#define SUPC       ((Supc   *)0x400E1410U) /**< \brief (SUPC      ) Base Address */
-#define RTT        ((Rtt    *)0x400E1430U) /**< \brief (RTT       ) Base Address */
-#define WDT        ((Wdt    *)0x400E1450U) /**< \brief (WDT       ) Base Address */
-#define RTC        ((Rtc    *)0x400E1460U) /**< \brief (RTC       ) Base Address */
-#define GPBR       ((Gpbr   *)0x400E1490U) /**< \brief (GPBR      ) Base Address */
+/* ************************************************************************** */
+/*   BASE ADDRESS DEFINITIONS FOR SAM4SD32B                                   */
+/* ************************************************************************** */
+#define HSMCI      (0x40000000U) /**< \brief (HSMCI     ) Base Address */
+#define PDC_HSMCI  (0x40000100U) /**< \brief (PDC_HSMCI ) Base Address */
+#define SSC        (0x40004000U) /**< \brief (SSC       ) Base Address */
+#define PDC_SSC    (0x40004100U) /**< \brief (PDC_SSC   ) Base Address */
+#define SPI        (0x40008000U) /**< \brief (SPI       ) Base Address */
+#define PDC_SPI    (0x40008100U) /**< \brief (PDC_SPI   ) Base Address */
+#define TC0        (0x40010000U) /**< \brief (TC0       ) Base Address */
+#define TC1        (0x40014000U) /**< \brief (TC1       ) Base Address */
+#define TWI0       (0x40018000U) /**< \brief (TWI0      ) Base Address */
+#define PDC_TWI0   (0x40018100U) /**< \brief (PDC_TWI0  ) Base Address */
+#define TWI1       (0x4001C000U) /**< \brief (TWI1      ) Base Address */
+#define PDC_TWI1   (0x4001C100U) /**< \brief (PDC_TWI1  ) Base Address */
+#define PWM        (0x40020000U) /**< \brief (PWM       ) Base Address */
+#define PDC_PWM    (0x40020100U) /**< \brief (PDC_PWM   ) Base Address */
+#define USART0     (0x40024000U) /**< \brief (USART0    ) Base Address */
+#define PDC_USART0 (0x40024100U) /**< \brief (PDC_USART0) Base Address */
+#define USART1     (0x40028000U) /**< \brief (USART1    ) Base Address */
+#define PDC_USART1 (0x40028100U) /**< \brief (PDC_USART1) Base Address */
+#define UDP        (0x40034000U) /**< \brief (UDP       ) Base Address */
+#define ADC        (0x40038000U) /**< \brief (ADC       ) Base Address */
+#define PDC_ADC    (0x40038100U) /**< \brief (PDC_ADC   ) Base Address */
+#define DACC       (0x4003C000U) /**< \brief (DACC      ) Base Address */
+#define PDC_DACC   (0x4003C100U) /**< \brief (PDC_DACC  ) Base Address */
+#define ACC        (0x40040000U) /**< \brief (ACC       ) Base Address */
+#define CRCCU      (0x40044000U) /**< \brief (CRCCU     ) Base Address */
+#define CMCC       (0x4007C000U) /**< \brief (CMCC      ) Base Address */
+#define MATRIX     (0x400E0200U) /**< \brief (MATRIX    ) Base Address */
+#define PMC        (0x400E0400U) /**< \brief (PMC       ) Base Address */
+#define UART0      (0x400E0600U) /**< \brief (UART0     ) Base Address */
+#define PDC_UART0  (0x400E0700U) /**< \brief (PDC_UART0 ) Base Address */
+#define CHIPID     (0x400E0740U) /**< \brief (CHIPID    ) Base Address */
+#define UART1      (0x400E0800U) /**< \brief (UART1     ) Base Address */
+#define PDC_UART1  (0x400E0900U) /**< \brief (PDC_UART1 ) Base Address */
+#define EFC0       (0x400E0A00U) /**< \brief (EFC0      ) Base Address */
+#define EFC1       (0x400E0C00U) /**< \brief (EFC1      ) Base Address */
+#define PIOA       (0x400E0E00U) /**< \brief (PIOA      ) Base Address */
+#define PDC_PIOA   (0x400E0F68U) /**< \brief (PDC_PIOA  ) Base Address */
+#define PIOB       (0x400E1000U) /**< \brief (PIOB      ) Base Address */
+#define RSTC       (0x400E1400U) /**< \brief (RSTC      ) Base Address */
+#define SUPC       (0x400E1410U) /**< \brief (SUPC      ) Base Address */
+#define RTT        (0x400E1430U) /**< \brief (RTT       ) Base Address */
+#define WDT        (0x400E1450U) /**< \brief (WDT       ) Base Address */
+#define RTC        (0x400E1460U) /**< \brief (RTC       ) Base Address */
+#define GPBR       (0x400E1490U) /**< \brief (GPBR      ) Base Address */
 
 /* ************************************************************************** */
-/*   MEMORY MAPPING DEFINITIONS FOR SAM4SD32B */
+/*   MEMORY MAPPING DEFINITIONS FOR SAM4SD32B                                 */
 /* ************************************************************************** */
-
 #define IFLASH0_SIZE             (0x100000u)
 #define IFLASH0_PAGE_SIZE        (512u)
 #define IFLASH0_LOCK_REGION_SIZE (8192u)
@@ -303,19 +292,18 @@ void WDT_Handler        ( void );
 #define EBI_CS3_ADDR (0x63000000u) /**< EBI Chip Select 3 base address */
 
 /* ************************************************************************** */
-/*   MISCELLANEOUS DEFINITIONS FOR SAM4SD32B */
+/*   MISCELLANEOUS DEFINITIONS FOR SAM4SD32B                                  */
 /* ************************************************************************** */
-
 #define CHIP_JTAGID       (0x05B3203FUL)
 #define CHIP_CIDR         (0x29970EE0UL)
+#define CHIP_EXID         (0x0UL)
 #define NB_CH_ADC         (10UL)
 #define NB_CH_DAC         (2UL)
 #define USB_DEVICE_MAX_EP (8UL)
 
 /* ************************************************************************** */
-/*   ELECTRICAL DEFINITIONS FOR SAM4SD32B */
+/*   ELECTRICAL DEFINITIONS FOR SAM4SD32B                                     */
 /* ************************************************************************** */
-
 /* Device characteristics */
 #define CHIP_FREQ_SLCK_RC_MIN           (20000UL)
 #define CHIP_FREQ_SLCK_RC               (32000UL)
@@ -342,3 +330,4 @@ void WDT_Handler        ( void );
 #endif
 
 #endif /* _A6D7E325_400C_4927_A57B_AC63F6E12196_ */
+
