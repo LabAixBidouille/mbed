@@ -10,7 +10,7 @@
 #endif
 
 /* ************************************************************************** */
-/*   CMSIS DEFINITIONS FOR SAM4SD16B */
+/*   CMSIS DEFINITIONS FOR SAM4SD16B                                          */
 /* ************************************************************************** */
 /* Interrupt Number Definition */
 typedef enum IRQn
@@ -26,7 +26,6 @@ typedef enum IRQn
   PendSV_IRQn           = -2,  /**< 14 Cortex-M4 Pend SV Interrupt           */
   SysTick_IRQn          = -1,  /**< 15 Cortex-M4 System Tick Interrupt       */
 /******  SAM4SD16B specific Interrupt Numbers *********************************/
-
   SUPC_IRQn            =  0, /**<  0 SAM4SD16B Supply Controller (SUPC) */
   RSTC_IRQn            =  1, /**<  1 SAM4SD16B Reset Controller (RSTC) */
   RTC_IRQn             =  2, /**<  2 SAM4SD16B Real Time Clock (RTC) */
@@ -167,30 +166,22 @@ void USART0_Handler     ( void );
 void USART1_Handler     ( void );
 void WDT_Handler        ( void );
 
-/**
- * \brief Configuration of the Cortex-M4 Processor and Core Peripherals
- */
-
+/* Configuration of the Cortex-M4 Processor and Core Peripherals */
 #define __CM4_REV              0x0001 /**< SAM4SD16B core revision number ([15:8] revision number, [7:0] patch number) */
 #define __MPU_PRESENT          1      /**< SAM4SD16B does provide a MPU */
 #define __FPU_PRESENT          0      /**< SAM4SD16B does not provide a FPU */
 #define __NVIC_PRIO_BITS       4      /**< SAM4SD16B uses 4 Bits for the Priority Levels */
 #define __Vendor_SysTickConfig 0      /**< Set to 1 if different SysTick Config is used */
 
-/*
- * \brief CMSIS includes
- */
-
+/* CMSIS includes */
 #include <core_cm4.h>
 #if !defined DONT_USE_CMSIS_INIT
 #include "system_atsam4s.h"
 #endif /* DONT_USE_CMSIS_INIT */
 
-
 /* ************************************************************************** */
-/*   PERIPHERAL ID DEFINITIONS FOR SAM4SD16B */
+/*   PERIPHERAL ID DEFINITIONS FOR SAM4SD16B                                  */
 /* ************************************************************************** */
-
 #define ID_SUPC   ( 0) /**< \brief Supply Controller (SUPC) */
 #define ID_RSTC   ( 1) /**< \brief Reset Controller (RSTC) */
 #define ID_RTC    ( 2) /**< \brief Real Time Clock (RTC) */
@@ -226,7 +217,7 @@ void WDT_Handler        ( void );
 #define ID_PERIPH_COUNT (35) /**< \brief Number of peripheral IDs */
 
 /* ************************************************************************** */
-/*   BASE ADDRESS DEFINITIONS FOR SAM4SD16B */
+/*   BASE ADDRESS DEFINITIONS FOR SAM4SD16B                                   */
 /* ************************************************************************** */
 #define HSMCI      (0x40000000U) /**< \brief (HSMCI     ) Base Address */
 #define PDC_HSMCI  (0x40000100U) /**< \brief (PDC_HSMCI ) Base Address */
@@ -273,11 +264,9 @@ void WDT_Handler        ( void );
 #define RTC        (0x400E1460U) /**< \brief (RTC       ) Base Address */
 #define GPBR       (0x400E1490U) /**< \brief (GPBR      ) Base Address */
 
-
 /* ************************************************************************** */
-/*   MEMORY MAPPING DEFINITIONS FOR SAM4SD16B */
+/*   MEMORY MAPPING DEFINITIONS FOR SAM4SD16B                                 */
 /* ************************************************************************** */
-
 #define IFLASH0_SIZE             (0x80000u)
 #define IFLASH0_PAGE_SIZE        (512u)
 #define IFLASH0_LOCK_REGION_SIZE (8192u)
@@ -303,19 +292,18 @@ void WDT_Handler        ( void );
 #define EBI_CS3_ADDR (0x63000000u) /**< EBI Chip Select 3 base address */
 
 /* ************************************************************************** */
-/*   MISCELLANEOUS DEFINITIONS FOR SAM4SD16B */
+/*   MISCELLANEOUS DEFINITIONS FOR SAM4SD16B                                  */
 /* ************************************************************************** */
-
 #define CHIP_JTAGID       (0x05B3203FUL)
 #define CHIP_CIDR         (0x29970CE0UL)
+#define CHIP_EXID         (0x0UL)
 #define NB_CH_ADC         (10UL)
 #define NB_CH_DAC         (2UL)
 #define USB_DEVICE_MAX_EP (8UL)
 
 /* ************************************************************************** */
-/*   ELECTRICAL DEFINITIONS FOR SAM4SD16B */
+/*   ELECTRICAL DEFINITIONS FOR SAM4SD16B                                     */
 /* ************************************************************************** */
-
 /* Device characteristics */
 #define CHIP_FREQ_SLCK_RC_MIN           (20000UL)
 #define CHIP_FREQ_SLCK_RC               (32000UL)
@@ -342,3 +330,4 @@ void WDT_Handler        ( void );
 #endif
 
 #endif /* _514F7A10_BE5F_4839_8618_DD0D6B4FF48A_ */
+

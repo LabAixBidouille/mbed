@@ -10,7 +10,7 @@
 #endif
 
 /* ************************************************************************** */
-/*   CMSIS DEFINITIONS FOR SAM4SD32C */
+/*   CMSIS DEFINITIONS FOR SAM4SD32C                                          */
 /* ************************************************************************** */
 /* Interrupt Number Definition */
 typedef enum IRQn
@@ -26,7 +26,6 @@ typedef enum IRQn
   PendSV_IRQn           = -2,  /**< 14 Cortex-M4 Pend SV Interrupt           */
   SysTick_IRQn          = -1,  /**< 15 Cortex-M4 System Tick Interrupt       */
 /******  SAM4SD32C specific Interrupt Numbers *********************************/
-
   SUPC_IRQn            =  0, /**<  0 SAM4SD32C Supply Controller (SUPC) */
   RSTC_IRQn            =  1, /**<  1 SAM4SD32C Reset Controller (RSTC) */
   RTC_IRQn             =  2, /**<  2 SAM4SD32C Real Time Clock (RTC) */
@@ -170,7 +169,6 @@ void USART1_Handler     ( void );
 void WDT_Handler        ( void );
 
 /* Configuration of the Cortex-M4 Processor and Core Peripherals */
-
 #define __CM4_REV              0x0001 /**< SAM4SD32C core revision number ([15:8] revision number, [7:0] patch number) */
 #define __MPU_PRESENT          1      /**< SAM4SD32C does provide a MPU */
 #define __FPU_PRESENT          0      /**< SAM4SD32C does not provide a FPU */
@@ -178,15 +176,13 @@ void WDT_Handler        ( void );
 #define __Vendor_SysTickConfig 0      /**< Set to 1 if different SysTick Config is used */
 
 /* CMSIS includes */
-
 #include <core_cm4.h>
 #if !defined DONT_USE_CMSIS_INIT
 #include "system_atsam4s.h"
 #endif /* DONT_USE_CMSIS_INIT */
 
-
 /* ************************************************************************** */
-/*   PERIPHERAL ID DEFINITIONS FOR SAM4SD32C */
+/*   PERIPHERAL ID DEFINITIONS FOR SAM4SD32C                                  */
 /* ************************************************************************** */
 #define ID_SUPC   ( 0) /**< \brief Supply Controller (SUPC) */
 #define ID_RSTC   ( 1) /**< \brief Reset Controller (RSTC) */
@@ -225,7 +221,7 @@ void WDT_Handler        ( void );
 #define ID_PERIPH_COUNT (35) /**< \brief Number of peripheral IDs */
 
 /* ************************************************************************** */
-/*   BASE ADDRESS DEFINITIONS FOR SAM4SD32C */
+/*   BASE ADDRESS DEFINITIONS FOR SAM4SD32C                                   */
 /* ************************************************************************** */
 #define HSMCI      (0x40000000U) /**< \brief (HSMCI     ) Base Address */
 #define PDC_HSMCI  (0x40000100U) /**< \brief (PDC_HSMCI ) Base Address */
@@ -275,7 +271,7 @@ void WDT_Handler        ( void );
 #define GPBR       (0x400E1490U) /**< \brief (GPBR      ) Base Address */
 
 /* ************************************************************************** */
-/*   MEMORY MAPPING DEFINITIONS FOR SAM4SD32C */
+/*   MEMORY MAPPING DEFINITIONS FOR SAM4SD32C                                 */
 /* ************************************************************************** */
 #define IFLASH0_SIZE             (0x100000u)
 #define IFLASH0_PAGE_SIZE        (512u)
@@ -302,19 +298,18 @@ void WDT_Handler        ( void );
 #define EBI_CS3_ADDR (0x63000000u) /**< EBI Chip Select 3 base address */
 
 /* ************************************************************************** */
-/*   MISCELLANEOUS DEFINITIONS FOR SAM4SD32C */
+/*   MISCELLANEOUS DEFINITIONS FOR SAM4SD32C                                  */
 /* ************************************************************************** */
-
 #define CHIP_JTAGID       (0x05B3203FUL)
 #define CHIP_CIDR         (0x29A70EE0UL)
+#define CHIP_EXID         (0x0UL)
 #define NB_CH_ADC         (15UL)
 #define NB_CH_DAC         (2UL)
 #define USB_DEVICE_MAX_EP (8UL)
 
 /* ************************************************************************** */
-/*   ELECTRICAL DEFINITIONS FOR SAM4SD32C */
+/*   ELECTRICAL DEFINITIONS FOR SAM4SD32C                                     */
 /* ************************************************************************** */
-
 /* Device characteristics */
 #define CHIP_FREQ_SLCK_RC_MIN           (20000UL)
 #define CHIP_FREQ_SLCK_RC               (32000UL)
@@ -335,10 +330,6 @@ void WDT_Handler        ( void );
 #define CHIP_FREQ_FWS_3                 (80000000UL)  /**< \brief Maximum operating frequency when FWS is 3 */
 #define CHIP_FREQ_FWS_4                 (100000000UL) /**< \brief Maximum operating frequency when FWS is 4 */
 #define CHIP_FREQ_FWS_5                 (123000000UL) /**< \brief Maximum operating frequency when FWS is 5 */
-
-/* HYSTeresis levels: please refer to Electrical Characteristics */
-#define ACC_ACR_HYST_50MV_MAX	          (0x01UL)
-#define ACC_ACR_HYST_90MV_MAX           (0x11UL)
 
 #ifdef __cplusplus
 }
