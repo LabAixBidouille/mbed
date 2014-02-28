@@ -2,6 +2,7 @@
 
 PinName port_pin( PortName port, int pin_n )
 {
+	return 0 ;
 }
 
 void port_init ( port_t *obj, PortName port, int mask, PinDirection dir )
@@ -22,4 +23,5 @@ void port_write( port_t *obj, int value )
 
 int  port_read( port_t *obj )
 {
+	return 0 ;
 }

@@ -1,5 +1,6 @@
 #include "rtc_api.h"
 
+#if (defined DEVICE_RTC) && (DEVICE_RTC == 1)
 void rtc_init( void )
 {
 }
@@ -21,3 +22,4 @@ time_t rtc_read( void )
 void rtc_write( time_t t )
 {
 }
+#endif // (defined DEVICE_RTC) && (DEVICE_RTC == 1)

@@ -1,5 +1,7 @@
 #include "pwmout_api.h"
 
+#if (defined DEVICE_PWMOUT) && (DEVICE_PWMOUT == 1)
+
 void pwmout_init( pwmout_t* obj, PinName pin )
 {
 }
@@ -44,3 +46,4 @@ void pwmout_pulsewidth_us( pwmout_t* obj, int us )
 {
 }
 
+#endif // (defined DEVICE_PWMOUT) && (DEVICE_PWMOUT == 1)

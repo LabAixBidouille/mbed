@@ -1,5 +1,7 @@
 #include "analogout_api.h"
 
+#if (defined DEVICE_ANALOGOUT) && (DEVICE_ANALOGOUT == 1)
+
 void analogout_init( dac_t *obj, PinName pin )
 {
 }
@@ -25,3 +27,4 @@ uint16_t analogout_read_u16 (dac_t *obj )
 {
 	return 0u ;
 }
+#endif // (defined DEVICE_ANALOGOUT) && (DEVICE_ANALOGOUT == 1)

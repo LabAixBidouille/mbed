@@ -1,6 +1,8 @@
 #include "device.h"
 #include "serial_api.h"
 
+#if (defined DEVICE_SERIAL) && (DEVICE_SERIAL == 1)
+
 void serial_init( serial_t *obj, PinName tx, PinName rx )
 {
 }
@@ -63,3 +65,5 @@ void serial_pinout_tx( PinName tx )
 void serial_set_flow_control( serial_t *obj, FlowControl type, PinName rxflow, PinName txflow )
 {
 }
+
+#endif // (defined DEVICE_SERIAL) && (DEVICE_SERIAL == 1)
