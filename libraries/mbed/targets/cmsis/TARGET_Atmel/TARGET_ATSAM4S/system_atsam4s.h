@@ -21,11 +21,6 @@ void SystemInit(void);
  */
 void SystemCoreClockUpdate(void);
 
-/**
- * Initialize flash.
- */
-void system_init_flash(uint32_t dw_clk);
-
 #ifdef __cplusplus
 }
 #endif
