@@ -32,12 +32,15 @@ struct dac_s {
 struct can_s {
 };
 #endif
-
+/*
+typedef struct i2c_s {
+} i2c_t ;
+*/
 struct i2c_s {
-};
+} ;
 
 struct spi_s {
-};
+} ;
 
 #include "gpio_object.h"
 
