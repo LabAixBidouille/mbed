@@ -53,6 +53,9 @@ STMicroelectronics:
 Nordic:
 * [nRF51822-mKIT](https://mbed.org/platforms/Nordic-nRF51822/) (Cortex-M0)
 
+Atmel:
+* SAM4S Xplained (Cortex-M4 / ATSAM4S16C)
+
 Supported Toolchains and IDEs
 -----------------------------
 * GCC ARM: [GNU Tools for ARM Embedded Processors](https://launchpad.net/gcc-arm-embedded/4.7/4.7-2012-q4-major)
