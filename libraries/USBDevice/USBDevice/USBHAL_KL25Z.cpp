@@ -16,7 +16,7 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#if defined(TARGET_KL25Z) | defined(TARGET_KL46Z) | defined(TARGET_K20D5M)
+#if defined(TARGET_KL25Z) | defined(TARGET_KL43Z) | defined(TARGET_KL46Z) | defined(TARGET_K20D50M) | defined(TARGET_K64F)
 
 #include "USBHAL.h"
 
@@ -86,6 +86,9 @@ USBHAL::USBHAL(void) {
     // Disable IRQ
     NVIC_DisableIRQ(USB0_IRQn);
 
+#if defined(TARGET_K64F)
+    MPU->CESR=0;
+#endif
     // fill in callback array
     epCallback[0] = &USBHAL::EP1_OUT_callback;
     epCallback[1] = &USBHAL::EP1_IN_callback;
@@ -118,12 +121,25 @@ USBHAL::USBHAL(void) {
     epCallback[28] = &USBHAL::EP15_OUT_callback;
     epCallback[29] = &USBHAL::EP15_IN_callback;
 
+#if defined(TARGET_KL43Z)
+    // enable USBFS clock
+    SIM->SCGC4 |= SIM_SCGC4_USBFS_MASK;
 
+    // enable the IRC48M clock
+    USB0->CLK_RECOVER_IRC_EN |= USB_CLK_RECOVER_IRC_EN_IRC_EN_MASK;
+
+    // enable the USB clock recovery tuning
+    USB0->CLK_RECOVER_CTRL |= USB_CLK_RECOVER_CTRL_CLOCK_RECOVER_EN_MASK;
+
+    // choose usb src clock
+    SIM->SOPT2 |= SIM_SOPT2_USBSRC_MASK;
+#else
     // choose usb src as PLL
     SIM->SOPT2 |= (SIM_SOPT2_USBSRC_MASK | SIM_SOPT2_PLLFLLSEL_MASK);
 
     // enable OTG clock
     SIM->SCGC4 |= SIM_SCGC4_USBOTG_MASK;
+#endif
 
     // Attach IRQ
     instance = this;
@@ -136,9 +152,9 @@ USBHAL::USBHAL(void) {
     while(USB0->USBTRC0 & USB_USBTRC0_USBRESET_MASK);
 
     // Set BDT Base Register
-    USB0->BDTPAGE1=(uint8_t)((uint32_t)bdt>>8);
-    USB0->BDTPAGE2=(uint8_t)((uint32_t)bdt>>16);
-    USB0->BDTPAGE3=(uint8_t)((uint32_t)bdt>>24);
+    USB0->BDTPAGE1 = (uint8_t)((uint32_t)bdt>>8);
+    USB0->BDTPAGE2 = (uint8_t)((uint32_t)bdt>>16);
+    USB0->BDTPAGE3 = (uint8_t)((uint32_t)bdt>>24);
 
     // Clear interrupt flag
     USB0->ISTAT = 0xff;

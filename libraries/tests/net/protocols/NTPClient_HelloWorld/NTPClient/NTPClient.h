@@ -24,12 +24,6 @@ NTP Client header file
 #ifndef NTPCLIENT_H_
 #define NTPCLIENT_H_
 
-#include <cstdint>
-
-using std::uint8_t;
-using std::uint16_t;
-using std::uint32_t;
-
 #include "UDPSocket.h"
 
 #define NTP_DEFAULT_PORT 123
@@ -93,10 +87,8 @@ private:
     uint32_t txTm_s;
     uint32_t txTm_f;
   } __attribute__ ((packed));
-  
+
   UDPSocket m_sock;
-
 };
-
 
 #endif /* NTPCLIENT_H_ */

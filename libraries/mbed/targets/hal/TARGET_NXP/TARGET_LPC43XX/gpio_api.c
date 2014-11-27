@@ -15,10 +15,12 @@
  *
  * Ported to NXP LPC43XX by Micromint USA <support@micromint.com>
  */
+#include "mbed_assert.h"
 #include "gpio_api.h"
 #include "pinmap.h"
 
 uint32_t gpio_set(PinName pin) {
+    MBED_ASSERT(pin != (PinName)NC);
     int f = 0;
     unsigned int port = (unsigned int)MBED_GPIO_PORT(pin);
 
@@ -28,25 +30,20 @@ uint32_t gpio_set(PinName pin) {
     return (1 << ((int)pin & 0x1F));
 }
 
-void gpio_init(gpio_t *obj, PinName pin, PinDirection direction) {
-    if (pin == NC) return;
-    
+void gpio_init(gpio_t *obj, PinName pin) {
     obj->pin = pin;
+    if (pin == (PinName)NC)
+        return;
+
     obj->mask = gpio_set(pin);
 
-    LPC_GPIO_T *port_reg = (LPC_GPIO_T *) (LPC_GPIO_PORT_BASE);
+    LPC_GPIO_T *port_reg = (LPC_GPIO_T *)(LPC_GPIO_PORT_BASE);
     unsigned int port = (unsigned int)MBED_GPIO_PORT(pin);
 
     obj->reg_set = &port_reg->SET[port];
     obj->reg_clr = &port_reg->CLR[port];
     obj->reg_in  = &port_reg->PIN[port];
     obj->reg_dir = &port_reg->DIR[port];
-
-    gpio_dir(obj, direction);
-    switch (direction) {
-        case PIN_OUTPUT: pin_mode(pin, PullNone); break;
-        case PIN_INPUT : pin_mode(pin, PullDown); break;
-    }
 }
 
 void gpio_mode(gpio_t *obj, PinMode mode) {
@@ -54,8 +51,13 @@ void gpio_mode(gpio_t *obj, PinMode mode) {
 }
 
 void gpio_dir(gpio_t *obj, PinDirection direction) {
+    MBED_ASSERT(obj->pin != (PinName)NC);
     switch (direction) {
-        case PIN_INPUT : *obj->reg_dir &= ~obj->mask; break;
-        case PIN_OUTPUT: *obj->reg_dir |=  obj->mask; break;
+        case PIN_INPUT :
+            *obj->reg_dir &= ~obj->mask;
+            break;
+        case PIN_OUTPUT:
+            *obj->reg_dir |= obj->mask;
+            break;
     }
 }

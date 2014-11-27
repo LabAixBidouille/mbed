@@ -145,6 +145,9 @@ typedef enum {
     // Other mbed Pin Names
     LED     = P3_25,
     LED1    = LED,
+    LED2    = LED,
+    LED3    = LED,
+    LED4    = LED,
     LED_RED = LED,
     
    	// mbed / debug IF (LPC11)
@@ -163,7 +166,9 @@ typedef enum {
     PullUp = 0,
     PullDown = 3,
     PullNone = 2,
-    OpenDrain = 4
+    Repeater = 1,
+    OpenDrain = 4,
+    PullDefault = PullDown
 } PinMode;
 
 // version of PINCON_TypeDef using register arrays

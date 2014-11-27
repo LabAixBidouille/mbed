@@ -20,14 +20,36 @@ from os.path import splitext, basename
 
 class CoIDE(Exporter):
     NAME = 'CoIDE'
+    TOOLCHAIN = 'GCC_ARM'
+
+    TARGETS = [
+        'KL25Z',
+        'KL05Z',
+        'LPC1768',
+        'ARCH_PRO',
+        'DISCO_F407VG',
+        'NUCLEO_L152RE',
+        'NUCLEO_F030R8',
+        'NUCLEO_F072RB',
+        'NUCLEO_F302R8',
+        'NUCLEO_F334R8',
+        'NUCLEO_F401RE',
+        'NUCLEO_F411RE',
+        'DISCO_F429ZI',
+        'DISCO_F334C8',
+        'DISCO_F303VC',
+        'MTS_MDOT_F405RG',
+    ]
+
     # seems like CoIDE currently supports only one type
     FILE_TYPES = {
         'c_sources':'1',
         'cpp_sources':'1',
         's_sources':'1'
     }
-    TARGETS = ['KL25Z','KL05Z']
-    TOOLCHAIN = 'GCC_ARM'
+    FILE_TYPES2 = {
+        'headers':'1'
+    }
 
     def generate(self):
         self.resources.win_to_unix()
@@ -37,21 +59,31 @@ class CoIDE(Exporter):
                 source_files.append({
                     'name': basename(file), 'type': n, 'path': file
                 })
+        header_files = []
+        for r_type, n in CoIDE.FILE_TYPES2.iteritems():
+            for file in getattr(self.resources, r_type):
+                header_files.append({
+                    'name': basename(file), 'type': n, 'path': file
+                })
 
         libraries = []
         for lib in self.resources.libraries:
             l, _ = splitext(basename(lib))
             libraries.append(l[3:])
 
+        if self.resources.linker_script is None:
+            self.resources.linker_script = ''
+            
         ctx = {
             'name': self.program_name,
             'source_files': source_files,
+            'header_files': header_files,
             'include_paths': self.resources.inc_dirs,
             'scatter_file': self.resources.linker_script,
             'library_paths': self.resources.lib_dirs,
             'object_files': self.resources.objects,
             'libraries': libraries,
-            'symbols': self.toolchain.get_symbols()
+            'symbols': self.get_symbols()
         }
         target = self.target.lower()
 

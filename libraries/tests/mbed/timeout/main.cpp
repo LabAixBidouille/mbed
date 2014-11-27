@@ -1,43 +1,39 @@
 #include "mbed.h"
 
+Timeout timer;
 DigitalOut led(LED1);
 
-#ifdef TARGET_KL25Z
-DigitalOut out(PTA1);
-
-#elif TARGET_KL05Z
-DigitalOut out(PTB1);
-
-#elif TARGET_KL46Z
-DigitalOut out(PTA1);
-
-#elif defined(TARGET_LPC812)
-DigitalOut out(P0_12);
-
-#elif defined(TARGET_LPC1114)
-DigitalOut out(LED2);
-
-#else
-DigitalOut out(p5);
-#endif
-
-Timeout timer;
-
-void toggleOff (void);
-
-void toggleOn (void) {
-    out = 1;
-    led = 1;
-    timer.attach_us(toggleOff, 10000);
+namespace {
+    const int MS_INTERVALS = 1000;
 }
 
-void toggleOff(void) {
-    out = 0;
-    led = 0;
-    timer.attach_us(toggleOn, 30000);
+void print_char(char c = '*')
+{
+    printf("%c", c);
+    fflush(stdout);
 }
 
-int main() {
+void toggleOff(void);
+
+void toggleOn(void)
+{
+    static int toggle_counter = 0;
+    if (toggle_counter == MS_INTERVALS) {
+        led = !led;
+        print_char();
+        toggle_counter = 0;
+    }
+    toggle_counter++;
+    timer.attach_us(toggleOff, 500);
+}
+
+void toggleOff(void)
+{
+    timer.attach_us(toggleOn, 500);
+}
+
+int main()
+{
     toggleOn();
-    while(1);
+    while (1);
 }

@@ -37,8 +37,7 @@ extern "C" {
 #endif
 
 typedef enum {
-    ADC_1 = (int)ADC1_BASE,
-    ADC_2 = (int)ADC_BASE
+    ADC_1 = (int)ADC1_BASE
 } ADCName;
 
 typedef enum {
@@ -46,8 +45,11 @@ typedef enum {
 } DACName;
 
 typedef enum {
-    UART_1 = (int)USART1_BASE,  
-    UART_2 = (int)USART2_BASE
+    UART_1 = (int)USART1_BASE,
+    UART_2 = (int)USART2_BASE,
+    UART_3 = (int)USART3_BASE,
+    UART_4 = (int)UART4_BASE,
+    UART_5 = (int)UART5_BASE
 } UARTName;
 
 #define STDIO_UART_TX  PA_2
@@ -56,7 +58,8 @@ typedef enum {
 
 typedef enum {
     SPI_1 = (int)SPI1_BASE,
-    SPI_2 = (int)SPI2_BASE
+    SPI_2 = (int)SPI2_BASE,
+    SPI_3 = (int)SPI3_BASE
 } SPIName;
 
 typedef enum {
@@ -65,9 +68,13 @@ typedef enum {
 } I2CName;
 
 typedef enum {
-    PWM_2 = (int)TIM2_BASE,
-    PWM_3 = (int)TIM3_BASE,
-    PWM_4 = (int)TIM4_BASE
+    PWM_2  = (int)TIM2_BASE,
+    PWM_3  = (int)TIM3_BASE,
+    PWM_4  = (int)TIM4_BASE,
+    PWM_5  = (int)TIM5_BASE,
+    PWM_9  = (int)TIM9_BASE,
+    PWM_10 = (int)TIM10_BASE,
+    PWM_11 = (int)TIM11_BASE
 } PWMName;
 
 #ifdef __cplusplus

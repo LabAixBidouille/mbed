@@ -20,17 +20,28 @@ from os.path import basename
 
 class DS5_5(Exporter):
     NAME = 'DS5'
-    TARGETS = ['LPC1768', 'LPC11U24', 'LPC812']
+
+    TARGETS = [
+        'LPC1768',
+        'LPC11U24',
+        'LPC812',
+        'UBLOX_C027',
+        'ARCH_PRO',
+    ]
+
+    USING_MICROLIB = [
+        'LPC812',
+    ]
+
     FILE_TYPES = {
         'c_sources':'1',
         'cpp_sources':'8',
         's_sources':'2'
     }
-    USING_MICROLIB = ['LPC812']
 
     def get_toolchain(self):
         return 'uARM' if (self.target in self.USING_MICROLIB) else 'ARM'
-    
+
     def generate(self):
         source_files = []
         for r_type, n in DS5_5.FILE_TYPES.iteritems():
@@ -38,17 +49,17 @@ class DS5_5(Exporter):
                 source_files.append({
                     'name': basename(file), 'type': n, 'path': file
                 })
-        
+
         ctx = {
             'name': self.program_name,
             'include_paths': self.resources.inc_dirs,
             'scatter_file': self.resources.linker_script,
             'object_files': self.resources.objects + self.resources.libraries,
             'source_files': source_files,
-            'symbols': self.toolchain.get_symbols()
+            'symbols': self.get_symbols()
         }
         target = self.target.lower()
-        
+
         # Project file
         self.gen_file('ds5_5_%s.project.tmpl' % target, ctx, '.project')
         self.gen_file('ds5_5_%s.cproject.tmpl' % target, ctx, '.cproject')

@@ -17,7 +17,8 @@
 #include "cmsis.h"
 
 #include "gpio_irq_api.h"
-#include "error.h"
+#include "gpio_api.h"
+#include "mbed_error.h"
 
 #define CHANNEL_NUM    64
 
@@ -29,40 +30,45 @@ static gpio_irq_handler irq_handler;
 #define IRQ_FALLING_EDGE    PORT_PCR_IRQC(10)
 #define IRQ_EITHER_EDGE     PORT_PCR_IRQC(11)
 
+const uint32_t search_bits[] = {0x0000FFFF, 0x000000FF, 0x0000000F, 0x00000003, 0x00000001};
+
 static void handle_interrupt_in(PORT_Type *port, int ch_base) {
-    uint32_t mask = 0, i;
+    uint32_t isfr;
+    uint8_t location;
 
-    for (i = 0; i < 32; i++) {
-        uint32_t pmask = (1 << i);
-        if (port->ISFR & pmask) {
-            mask |= pmask;
-            uint32_t id = channel_ids[ch_base + i];
-            if (id == 0) {
-                continue;
-            }
-
-            FGPIO_Type *gpio;
-            gpio_irq_event event = IRQ_NONE;
-            switch (port->PCR[i] & PORT_PCR_IRQC_MASK) {
-                case IRQ_RAISING_EDGE:
-                    event = IRQ_RISE;
-                    break;
-
-                case IRQ_FALLING_EDGE:
-                    event = IRQ_FALL;
-                    break;
-
-                case IRQ_EITHER_EDGE:
-                    gpio = (port == PORTA) ? (FPTA) : (FPTD);
-                    event = (gpio->PDIR & pmask) ? (IRQ_RISE) : (IRQ_FALL);
-                    break;
-            }
-            if (event != IRQ_NONE) {
-                irq_handler(id, event);
-            }
+    while((isfr = port->ISFR) != 0) {
+        location = 0;
+        for (int i = 0; i < 5; i++) {
+            if (!(isfr & (search_bits[i] << location)))
+                location += 1 << (4 - i);
         }
+        
+        uint32_t id = channel_ids[ch_base + location];
+        if (id == 0) {
+            continue;
+        }
+
+        FGPIO_Type *gpio;
+        gpio_irq_event event = IRQ_NONE;
+        switch (port->PCR[location] & PORT_PCR_IRQC_MASK) {
+            case IRQ_RAISING_EDGE:
+                event = IRQ_RISE;
+                break;
+
+            case IRQ_FALLING_EDGE:
+                event = IRQ_FALL;
+                break;
+
+            case IRQ_EITHER_EDGE:
+                gpio = (port == PORTA) ? (FPTA) : (FPTD);
+                event = (gpio->PDIR & (1 << location)) ? (IRQ_RISE) : (IRQ_FALL);
+                break;
+        }
+        if (event != IRQ_NONE) {
+            irq_handler(id, event);
+        }
+        port->ISFR = 1 << location;
     }
-    port->ISFR = mask;
 }
 
 void gpio_irqA(void) {handle_interrupt_in(PORTA, 0);}
@@ -88,7 +94,7 @@ int gpio_irq_init(gpio_irq_t *obj, PinName pin, gpio_irq_handler handler, uint32
                 break;
 
             default:
-                error("gpio_irq only supported on port A and D\n");
+                error("gpio_irq only supported on port A and D");
                 break;
     }
     NVIC_SetVector(irq_n, vector);
@@ -161,14 +167,4 @@ void gpio_irq_disable(gpio_irq_t *obj) {
     } else if (obj->port == PortD) {
         NVIC_DisableIRQ(PORTD_IRQn);
     }
-}
-
-// Change the NMI pin to an input. This allows NMI pin to 
-//  be used as a low power mode wakeup.  The application will
-//  need to change the pin back to NMI_b or wakeup only occurs once!
-extern void gpio_init(gpio_t *obj, PinName pin, PinDirection direction);
-void NMI_Handler(void)
-{
-    gpio_t gpio;
-    gpio_init(&gpio, PTA4, PIN_INPUT);
 }

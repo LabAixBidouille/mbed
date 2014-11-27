@@ -1,5 +1,5 @@
 /* mbed Microcontroller Library
- * Copyright (c) 2006-2013 ARM Limited
+ * Copyright (c) 2006-2014 ARM Limited
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -132,6 +132,11 @@ typedef enum {
 
     // Not connected
     NC = (int)0xFFFFFFFF,
+
+    // Standard but not supported pins
+    USBTX = NC,
+    USBRX = NC,
+
 } PinName;
 
 typedef enum {
@@ -150,7 +155,8 @@ typedef enum {
     PullDown = 1,
     PullNone = 0,
     Repeater = 3,
-    OpenDrain = 4
+    OpenDrain = 4,
+    PullDefault = PullDown
 } PinMode;
 
 #ifdef __cplusplus

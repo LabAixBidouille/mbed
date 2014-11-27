@@ -104,8 +104,6 @@ typedef enum {
     PC_14 = 0x2E,
     PC_15 = 0x2F,
 
-    PD_0  = 0x30,
-    PD_1  = 0x31,
     PD_2  = 0x32,
 
     // Arduino connector namings
@@ -138,6 +136,8 @@ typedef enum {
     LED3        = PA_5,
     LED4        = PA_5,
     USER_BUTTON = PC_13,
+    SERIAL_TX   = PA_2,
+    SERIAL_RX   = PA_3,
     USBTX       = PA_2,
     USBRX       = PA_3,
     I2C_SCL     = PB_8,
@@ -156,7 +156,8 @@ typedef enum {
     PullNone  = 0,
     PullUp    = 1,
     PullDown  = 2,
-    OpenDrain = 3
+    OpenDrain = 3,
+    PullDefault = PullNone
 } PinMode;
 
 #ifdef __cplusplus

@@ -29,6 +29,11 @@ struct gpio_irq_s {
     uint32_t ch;
 };
 
+struct pwmout_s {
+     LPC_SCT0_Type* pwm;
+     uint32_t pwm_ch;
+};
+
 struct serial_s {
     LPC_USART0_Type *uart;
     unsigned char index;
@@ -38,6 +43,10 @@ struct analogin_s {
     ADCName adc;
 };
 
+struct dac_s {
+    DACName dac;
+};
+
 struct i2c_s {
     LPC_I2C0_Type *i2c;
 };
@@ -45,6 +54,10 @@ struct i2c_s {
 struct spi_s {
     LPC_SPI0_Type *spi;
     unsigned char spi_n;
+};
+
+struct can_s {
+    int index;
 };
 
 #include "gpio_object.h"

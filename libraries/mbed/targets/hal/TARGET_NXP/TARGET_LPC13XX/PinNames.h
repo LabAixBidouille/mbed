@@ -121,7 +121,12 @@ typedef enum {
     LED1 = p21,
     LED2 = p21,
     LED3 = p21,
-    LED4 = p21
+    LED4 = p21,
+
+    // Standard but not supported pins
+    USBTX = NC,
+    USBRX = NC,
+
 } PinName;
 
 typedef enum {
@@ -140,7 +145,8 @@ typedef enum {
     PullDown = 1,
     PullNone = 0,
     Repeater = 3,
-    OpenDrain = 4
+    OpenDrain = 4,
+    PullDefault = PullDown
 } PinMode;
 
 #ifdef __cplusplus

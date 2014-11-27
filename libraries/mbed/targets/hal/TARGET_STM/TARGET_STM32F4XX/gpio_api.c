@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include "mbed_assert.h"
 #include "gpio_api.h"
 #include "pinmap.h"
 
 uint32_t gpio_set(PinName pin) {
+    MBED_ASSERT(pin != (PinName)NC);
     uint32_t port_index = (uint32_t) pin >> 4;
 
     // Enable GPIO peripheral clock
@@ -26,10 +28,11 @@ uint32_t gpio_set(PinName pin) {
     return 1 << ((uint32_t) pin & 0xF);
 }
 
-void gpio_init(gpio_t *obj, PinName pin, PinDirection direction) {
-    if(pin == NC) return;
-
+void gpio_init(gpio_t *obj, PinName pin) {
     obj->pin = pin;
+    if (pin == (PinName)NC)
+        return;
+
     obj->mask = gpio_set(pin);
 
     uint32_t port_index = (uint32_t) pin >> 4;
@@ -39,14 +42,6 @@ void gpio_init(gpio_t *obj, PinName pin, PinDirection direction) {
     obj->reg_set = &port_reg->BSRRL;
     obj->reg_clr = &port_reg->BSRRH;
     obj->reg_in  = &port_reg->IDR;
-
-
-    gpio_dir(obj, direction);
-
-    switch (direction) {
-        case PIN_OUTPUT: pin_mode(pin, PullNone); break;
-        case PIN_INPUT : pin_mode(pin, PullDown); break;
-    }
 }
 
 void gpio_mode(gpio_t *obj, PinMode mode) {
@@ -54,8 +49,13 @@ void gpio_mode(gpio_t *obj, PinMode mode) {
 }
 
 void gpio_dir(gpio_t *obj, PinDirection direction) {
+    MBED_ASSERT(obj->pin != (PinName)NC);
     switch (direction) {
-        case PIN_INPUT : pin_function(obj->pin, STM_PIN_DATA(0, 0)); break;
-        case PIN_OUTPUT: pin_function(obj->pin, STM_PIN_DATA(1, 0)); break;
+        case PIN_INPUT :
+            pin_function(obj->pin, STM_PIN_DATA(0, 0));
+            break;
+        case PIN_OUTPUT:
+            pin_function(obj->pin, STM_PIN_DATA(1, 0));
+            break;
     }
 }

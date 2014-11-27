@@ -16,22 +16,23 @@ limitations under the License.
 """
 import os, tempfile
 from os.path import join, exists, basename
-from os import makedirs
 from shutil import copytree, rmtree
 
 from workspace_tools.utils import mkdir
-from workspace_tools.export import uvision4, codesourcery, codered, gccarm, ds5_5, iar, coide
+from workspace_tools.export import uvision4, codesourcery, codered, gccarm, ds5_5, iar, emblocks, coide, kds
 from workspace_tools.export.exporters import zip_working_directory_and_clean_up, OldLibrariesException
 from workspace_tools.targets import EXPORT_MAP
 
 EXPORTERS = {
     'uvision': uvision4.Uvision4,
-    'codered': codered.CodeRed,
+    'lpcxpresso': codered.CodeRed,
     'codesourcery': codesourcery.CodeSourcery,
     'gcc_arm': gccarm.GccArm,
     'ds5_5': ds5_5.DS5_5,
     'iar': iar.IAREmbeddedWorkbench,
-    'coide' : coide.CoIDE
+    'emblocks' : emblocks.IntermediateFile,
+    'coide' : coide.CoIDE,
+    'kds' : kds.KDS,
 }
 
 ERROR_MESSAGE_UNSUPPORTED_TOOLCHAIN = """
@@ -48,7 +49,8 @@ def online_build_url_resolver(url):
     return {'path':'', 'name':''}
 
 
-def export(project_path, project_name, ide, target, destination='/tmp/', tempdir=None, clean=True, build_url_resolver=online_build_url_resolver):
+def export(project_path, project_name, ide, target, destination='/tmp/',
+           tempdir=None, clean=True, extra_symbols=None, build_url_resolver=online_build_url_resolver):
     # Convention: we are using capitals for toolchain and target names
     if target is not None:
         target = target.upper()
@@ -73,7 +75,7 @@ def export(project_path, project_name, ide, target, destination='/tmp/', tempdir
                 report['errormsg'] = ERROR_MESSAGE_UNSUPPORTED_TOOLCHAIN % (target, ide)
             else:
                 try:
-                    exporter = Exporter(target, tempdir, project_name, build_url_resolver)
+                    exporter = Exporter(target, tempdir, project_name, build_url_resolver, extra_symbols=extra_symbols)
                     exporter.scan_and_copy_resources(project_path, tempdir)
                     exporter.generate()
                     report['success'] = True

@@ -39,10 +39,10 @@ typedef enum {
     LED_BLUE = P1_1,
     
     // mbed original LED naming
-    LED1 = LED_BLUE,
+    LED1 = LED_RED,
     LED2 = LED_GREEN,
-    LED3 = LED_RED,
-    LED4 = LED_RED,
+    LED3 = LED_BLUE,
+    LED4 = LED_BLUE,
     
     // Serial to USB pins
     USBTX = P0_18,
@@ -63,6 +63,9 @@ typedef enum {
     D11= P0_28,
     D12= P0_12,
     D13= P0_16, // same port as D5
+    D14= P0_23,
+    D15= P0_22,
+
     A0 = P0_8,
     A1 = P0_7,
     A2 = P0_6,
@@ -81,7 +84,8 @@ typedef enum {
     PullDown = 1,
     PullNone = 0,
     Repeater = 3,
-    OpenDrain = 4
+    OpenDrain = 4,
+    PullDefault = PullDown
 } PinMode;
 
 #define STDIO_UART_TX     USBTX
